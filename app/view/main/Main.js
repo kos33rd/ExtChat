@@ -1,10 +1,3 @@
-/**
- * This class is the main view for the application. It is specified in app.js as the
- * "mainView" property. That setting automatically applies the "viewport"
- * plugin causing this view to become the body element (i.e., the viewport).
- *
- * TODO - Replace this content of this view to suite the needs of your application.
- */
 Ext.define('ExtChat.view.main.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'app-main',
@@ -15,7 +8,7 @@ Ext.define('ExtChat.view.main.Main', {
 
         'ExtChat.view.main.MainController',
         'ExtChat.view.main.MainModel',
-        'ExtChat.view.main.List'
+        'ExtChat.view.main.Chat'
     ],
 
     controller: 'main',
@@ -76,29 +69,23 @@ Ext.define('ExtChat.view.main.Main', {
     },
 
     items: [{
-        title: 'Home',
-        iconCls: 'fa-home',
-        // The following grid shares a store with the classic version's grid as well!
+        title: 'Chat',
+        iconCls: 'fa-comments',
+        layout: {
+          type: 'hbox',
+          align: 'stretch',
+          pack: 'center'
+        },
         items: [{
-            xtype: 'mainlist'
+            xtype: 'chat',
+            maxWidth: 460,
+            flex: 1
         }]
-    }, {
-        title: 'Users',
-        iconCls: 'fa-user',
-        bind: {
-            html: '{loremIpsum}'
-        }
-    }, {
-        title: 'Groups',
-        iconCls: 'fa-users',
-        bind: {
-            html: '{loremIpsum}'
-        }
     }, {
         title: 'Settings',
         iconCls: 'fa-cog',
         bind: {
-            html: '{loremIpsum}'
+            html: '{TODO}'
         }
     }]
 });

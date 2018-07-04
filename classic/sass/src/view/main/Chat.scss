@@ -1,0 +1,46 @@
+.chat {
+  background-color: #1b1b29;
+  z-index: 1;
+}
+
+.chat .message {
+  position: relative;
+  padding: 8px;
+  min-height: 45px;
+  margin:16px;
+  border-radius: 4px;
+}
+
+.chat .message .arrow {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 100%;
+  width: 4px;
+  height: 0;
+  border: 16px solid transparent;
+}
+
+.chat .foreign {
+  background-color: white;
+}
+
+.chat .foreign .arrow{
+  left: -16px;
+  border-top-color: white;
+}
+
+.chat .own {
+  background-color: #effdde;
+}
+
+.chat .own .arrow{
+  left: calc(100% - 16px);
+  border-top-color: #effdde;
+}
+
+.chat .message .sender {
+  font-weight: bold;
+}
