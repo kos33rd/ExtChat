@@ -19,30 +19,12 @@ Ext.define('ExtChat.Application', {
     'ExtChat.store.Messages'
   ],
 
+  requires: [
+    'ExtChat.socketio.Provider'
+  ],
+
   launch: function () {
-    Ext.direct.Manager.addProvider({
-      id: 'messagingProvider',
-      type: 'socketio',
-      namespace: 'Messaging',
-      url: 'http://localhost:3000',
-      opts: {
-        reconnection: false,
-        multiplex: false
-      },
-      actions: {
-        Messages: [
-          {
-            name: 'read',
-            params: ['page', 'start', 'limit']
-          },
-          {
-            name: 'add',
-            params: ['name'],
-            strict: false
-          }
-        ]
-      }
-    });
+    ExtChat.socketio.Provider.init();
   },
 
   onAppUpdate: function () {

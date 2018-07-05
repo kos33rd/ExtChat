@@ -1,91 +1,96 @@
 Ext.define('ExtChat.view.main.Main', {
-    extend: 'Ext.tab.Panel',
-    xtype: 'app-main',
+  extend: 'Ext.tab.Panel',
+  xtype: 'app-main',
 
-    requires: [
-        'Ext.plugin.Viewport',
-        'Ext.window.MessageBox',
+  requires: [
+    'Ext.plugin.Viewport',
+    'Ext.window.MessageBox',
 
-        'ExtChat.view.main.MainController',
-        'ExtChat.view.main.MainModel',
-        'ExtChat.view.main.Chat'
-    ],
+    'ExtChat.view.main.MainController',
+    'ExtChat.view.main.MainModel',
+    'ExtChat.view.main.Chat',
+    'ExtChat.view.main.MessageInput'
+  ],
 
-    controller: 'main',
-    viewModel: 'main',
+  controller: 'main',
+  viewModel: 'main',
 
-    ui: 'navigation',
+  ui: 'navigation',
 
-    tabBarHeaderPosition: 1,
-    titleRotation: 0,
-    tabRotation: 0,
+  tabBarHeaderPosition: 1,
+  titleRotation: 0,
+  tabRotation: 0,
 
-    header: {
-        layout: {
-            align: 'stretchmax'
-        },
-        title: {
-            bind: {
-                text: '{name}'
-            },
-            flex: 0
-        },
-        iconCls: 'fa-th-list'
+  header: {
+    layout: {
+      align: 'stretchmax'
     },
-
-    tabBar: {
-        flex: 1,
-        layout: {
-            align: 'stretch',
-            overflowHandler: 'none'
-        }
+    title: {
+      bind: {
+        text: '{name}'
+      },
+      flex: 0
     },
+    iconCls: 'fa-th-list'
+  },
 
-    responsiveConfig: {
-        tall: {
-            headerPosition: 'top'
-        },
+  tabBar: {
+    flex: 1,
+    layout: {
+      align: 'stretch',
+      overflowHandler: 'none'
+    }
+  },
+
+  responsiveConfig: {
+    tall: {
+      headerPosition: 'top'
+    },
+    wide: {
+      headerPosition: 'left'
+    }
+  },
+
+  defaults: {
+    bodyPadding: 20,
+    tabConfig: {
+      plugins: 'responsive',
+      responsiveConfig: {
         wide: {
-            headerPosition: 'left'
-        }
-    },
-
-    defaults: {
-        bodyPadding: 20,
-        tabConfig: {
-            plugins: 'responsive',
-            responsiveConfig: {
-                wide: {
-                    iconAlign: 'left',
-                    textAlign: 'left'
-                },
-                tall: {
-                    iconAlign: 'top',
-                    textAlign: 'center',
-                    width: 120
-                }
-            }
-        }
-    },
-
-    items: [{
-        title: 'Chat',
-        iconCls: 'fa-comments',
-        layout: {
-          type: 'hbox',
-          align: 'stretch',
-          pack: 'center'
+          iconAlign: 'left',
+          textAlign: 'left'
         },
-        items: [{
-            xtype: 'chat',
-            maxWidth: 460,
-            flex: 1
-        }]
-    }, {
-        title: 'Settings',
-        iconCls: 'fa-cog',
-        bind: {
-            html: '{TODO}'
+        tall: {
+          iconAlign: 'top',
+          textAlign: 'center',
+          width: 120
         }
+      }
+    }
+  },
+
+  items: [{
+    title: 'Chat',
+    iconCls: 'fa-comments',
+    layout: {
+      type: 'vbox',
+      align: 'center',
+      pack: 'start'
+    },
+    defaults: {
+      width: 460
+    },
+    items: [{
+      xtype: 'chat',
+      flex: 1
+    }, {
+      xtype: 'messageinput'
     }]
+  }, {
+    title: 'Settings',
+    iconCls: 'fa-cog',
+    bind: {
+      html: '{TODO}'
+    }
+  }]
 });

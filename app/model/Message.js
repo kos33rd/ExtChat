@@ -4,12 +4,16 @@ Ext.define('ExtChat.model.Message', {
 
   fields: [
     {
+      name: 'id',
+      type: 'string'
+    },
+    {
       name: 'sender',
       type: 'string'
     },
     {
       name: 'timestamp',
-      type: 'string'
+      type: 'date'
     },
     {
       name: 'message',
@@ -18,7 +22,7 @@ Ext.define('ExtChat.model.Message', {
     {
       name: 'own',
       calculate: function (data) {
-        return data.sender === 'Worf';
+        return data.sender === 'Worf'
       }
     }
   ],
@@ -27,7 +31,9 @@ Ext.define('ExtChat.model.Message', {
     type: 'direct',
     api: {
       read: 'Messaging.Messages.read',
-      create: 'Messaging.Messages.add'
+      create: 'Messaging.Messages.add',
+      update: 'Messaging.Messages.edit',
+      destroy: 'Messaging.Messages.delete'
     }
   }
 });

@@ -8,22 +8,18 @@ Ext.define('ExtChat.view.main.Chat', {
 
   title: 'Chat',
 
-  store: {
-    type: 'messages'
-  },
+  store: 'ExtChat.store.Messages',
 
-  itemSelector: 'div.message',
-  tpl: [
-    '<tpl for=".">',
-        '<div class="<tpl if="own==true">own</tpl><tpl if="own==false">foreign</tpl> message">',
-          '<div class="arrow"></div>',
-          '<div class="sender">{sender}</div>',
-          '<div class="text">{message}</div>',
-        '</div>',
-    '</tpl>'
+  itemTpl: [
+    '<div class="<tpl if="own==true">own</tpl><tpl if="own==false">foreign</tpl> message">',
+      '<div class="arrow"></div>',
+      '<div class="sender">{sender}</div>',
+      '<div class="text">{message}</div>',
+    '</div>'
   ],
 
   listeners: {
-    select: 'onItemSelected'
+    select: 'onItemSelected',
+    itemadd: 'onMessageAdd'
   }
 });

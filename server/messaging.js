@@ -1,4 +1,6 @@
 // Initial stub data
+const uuid = require('uuid/v4');
+
 const messages = [
   {sender: 'Jean Luc', timestamp: "2018-07-04T21:00:00", message: "555-111-1111"},
   {sender: 'Worf', timestamp: "2018-07-04T21:00:02", message: "555-222-2222"},
@@ -12,7 +14,15 @@ const buildMessagingServer = function (io) {
     socket.on('Messages.add', function (req, res) {
 
       console.log('[EVT] Messages.add', req.data);
-      messages.push(req.data);
+
+      const message = {
+        id: uuid(),
+        sender: req.data.sender,
+        message: req.data.message,
+        timestamp: new Date()
+      }
+      messages.push(message);
+      socket.broadcast.emit('Messages.receive', message)
 
       res({
         type: req.type,
@@ -21,7 +31,8 @@ const buildMessagingServer = function (io) {
         method: req.method,
         data: [
           {
-            success: true
+            success: true,
+            data: message
           }
         ]
       });
@@ -42,10 +53,10 @@ const buildMessagingServer = function (io) {
   });
 
   const sendRandomMessage = function () {
-    io.emit('Messages.send', {sender: '--==/ AK-47 \\==--', timestamp: new Date().toISOString(), message: "RUSH B!", own: false});
+    io.emit('Messages.receive', {sender: '--==/ Annoying Bot \\==--', timestamp: new Date(), message: "I'm still here!", id: uuid()});
   }
 
-  setInterval(sendRandomMessage, 3000)
+  setInterval(sendRandomMessage, 15000)
 
 
 }

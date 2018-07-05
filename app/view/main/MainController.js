@@ -1,21 +1,31 @@
-/**
- * This class is the controller for the main view for the application. It is specified as
- * the "controller" of the Main view class.
- *
- * TODO - Replace this content of this view to suite the needs of your application.
- */
 Ext.define('ExtChat.view.main.MainController', {
-    extend: 'Ext.app.ViewController',
+  extend: 'Ext.app.ViewController',
 
-    alias: 'controller.main',
+  alias: 'controller.main',
 
-    onItemSelected: function (sender, record) {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
-    },
+  onItemSelected: function (sender, record) {
+    console.log('Selected record: ', record)
+  },
 
-    onConfirm: function (choice) {
-        if (choice === 'yes') {
-            //
-        }
+  onMessageInputKeydown: function (fld, evt) {
+    if (!evt.shiftKey && evt.getKey() === evt.ENTER) {
+      const messageText = fld.value
+      if (messageText) {
+        const message = Ext.create('ExtChat.model.Message', {
+          sender: 'Worf',
+          message: messageText.replace("\n", "\\n")
+        })
+        const messagesStore = Ext.getStore('ExtChat.store.Messages')
+        messagesStore.add(message)
+        fld.setValue('')
+        evt.preventDefault()
+      }
     }
+  },
+
+  onMessageAdd: function(record, index, node, view){
+    const chat = this.getView().down('chat');
+    const chatBody = chat.el.dom;
+    chatBody.scrollTop = chatBody.scrollHeight - chatBody.clientHeight;
+  }
 });

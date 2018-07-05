@@ -7,7 +7,8 @@
     "express": "^4.15.2",
     "express-http-proxy": "^1.2.0",
     "extjs-socketioprovider": "^0.1.2",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.1.1",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "serve": "concurrently  \"sencha app watch\" \"node server/index.js\""
