@@ -20,10 +20,13 @@ Ext.define('ExtChat.Application', {
   ],
 
   requires: [
-    'ExtChat.socketio.Provider'
+    'ExtChat.socketio.Provider',
+    'ExtChat.User'
   ],
 
+
   launch: function () {
+    ExtChat.User.init();
     ExtChat.socketio.Provider.init();
   },
 

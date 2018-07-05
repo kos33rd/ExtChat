@@ -22,7 +22,7 @@ Ext.define('ExtChat.model.Message', {
     {
       name: 'own',
       calculate: function (data) {
-        return data.sender === 'Worf'
+        return data.sender === ExtChat.User.name
       }
     }
   ],

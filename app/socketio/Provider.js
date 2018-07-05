@@ -31,16 +31,14 @@ Ext.define('ExtChat.socketio.Provider', {
       }
     });
 
-
     var socket = this.socketProvider.getSocket();
     socket.on('Messages.receive', this.onMessageReceive);
   },
 
   onMessageReceive: function(messageData) {
-    const store = Ext.getStore('ExtChat.store.Messages')
+    const store = Ext.getStore('ExtChat.store.Messages');
     const messageModel = store.getModel();
     const message = Ext.create(messageModel, messageData);
     store.add(message);
-    // debugger
   }
 })
