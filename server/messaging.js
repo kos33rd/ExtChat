@@ -1,11 +1,25 @@
 // Initial stub data
 const uuid = require('uuid/v4');
 
+/*
+
+ Homer:
+ Bart:
+ Homer:
+ Bart: Think about it. I mean, what team was Babe Ruth on? Who knows.
+ Lisa/Marge: Yankees.
+ Bart: Sharing is a bunch of bull, too. And helping others. And what's all this crap I've been hearing about tolerance?
+ Homer: Hmm. Your ideas are intriguing to me and I wish to subscribe to your newsletter. But I think we have to go to the retreat anyway.
+ */
+
 const messages = [
-  {sender: 'Jean Luc', timestamp: "2018-07-04T21:00:00", message: "555-111-1111"},
-  {sender: 'Worf', timestamp: "2018-07-04T21:00:02", message: "555-222-2222"},
-  {sender: 'Deanna', timestamp: "2018-07-04T21:00:05", message: "555-333-3333"},
-  {sender: 'Data', timestamp: "2018-07-04T22:30:00", message: "LEL KEK"}
+  {sender: 'Homer Simpson', timestamp: "2018-07-04T21:00:00", message: "So, Burns is gonna make us all go on a stupid corporate retreat up in the mountains to learn about teamwork. Which means we'll have to cancel our plans to hang around here."},
+  {sender: 'Bart', timestamp: "2018-07-04T21:00:02", message: "Teamwork is overrated."},
+  {sender: 'Homer Simpson', timestamp: "2018-07-04T21:00:02", message: "Huh?."},
+  {sender: 'Bart', timestamp: "2018-07-04T21:00:05", message: "Think about it. I mean, what team was Babe Ruth on? Who knows."},
+  {sender: 'Lisa', timestamp: "2018-07-04T21:00:05", message: "Yankees"},
+  {sender: 'Bart', timestamp: "2018-07-04T21:00:05", message: "Sharing is a bunch of bull, too. And helping others. And what's all this crap I've been hearing about tolerance?"},
+  {sender: 'Homer Simpson', timestamp: "2018-07-04T22:30:00", message: "Hmm. Your ideas are intriguing to me and I wish to subscribe to your newsletter. But I think we have to go to the retreat anyway."}
 ]
 
 
@@ -53,10 +67,12 @@ const buildMessagingServer = function (io) {
   });
 
   const sendRandomMessage = function () {
-    io.emit('Messages.receive', {sender: '--==/ Annoying Bot \\==--', timestamp: new Date(), message: "I'm still here!", id: uuid()});
+    const message = {sender: '--==/ Annoying Bot \\==--', timestamp: new Date(), message: "I'm still here!", id: uuid()}
+    io.emit('Messages.receive', message);
+    messages.push(message);
   }
 
-  setInterval(sendRandomMessage, 15000)
+  setInterval(sendRandomMessage, 30000)
 
 
 }
