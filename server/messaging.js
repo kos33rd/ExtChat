@@ -1,17 +1,6 @@
-// Initial stub data
 const uuid = require('uuid/v4');
 
-/*
-
- Homer:
- Bart:
- Homer:
- Bart: Think about it. I mean, what team was Babe Ruth on? Who knows.
- Lisa/Marge: Yankees.
- Bart: Sharing is a bunch of bull, too. And helping others. And what's all this crap I've been hearing about tolerance?
- Homer: Hmm. Your ideas are intriguing to me and I wish to subscribe to your newsletter. But I think we have to go to the retreat anyway.
- */
-
+// Initial stub data
 const messages = [
   {sender: 'Homer Simpson', timestamp: "2018-07-04T21:00:00", message: "So, Burns is gonna make us all go on a stupid corporate retreat up in the mountains to learn about teamwork. Which means we'll have to cancel our plans to hang around here."},
   {sender: 'Bart', timestamp: "2018-07-04T21:00:02", message: "Teamwork is overrated."},
